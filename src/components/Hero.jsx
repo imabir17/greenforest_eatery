@@ -28,23 +28,23 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-6 -z-10 border border-gold/30 md:inset-8" />
       <div className="pointer-events-none absolute inset-8 -z-10 border border-gold/10 md:inset-10" />
 
-      <motion.div variants={stagger} initial="hidden" animate="show" className="mx-auto max-w-4xl px-8 pt-24 text-center">
-        <motion.p variants={rise} className="mb-10 text-xs uppercase tracking-[0.5em] text-gold-soft">Uttara · Dhaka</motion.p>
-        <motion.h1 variants={rise} className="mx-auto w-[min(88vw,760px)]">
+      <motion.div variants={stagger} initial="hidden" animate="show" className="mx-auto max-w-4xl px-6 pt-20 pb-16 md:px-8 md:pt-24 md:pb-20 text-center">
+        <motion.p variants={rise} className="mb-6 md:mb-10 text-[0.7rem] md:text-xs uppercase tracking-[0.4em] md:tracking-[0.5em] text-gold-soft">Uttara · Dhaka</motion.p>
+        <motion.h1 variants={rise} className="mx-auto w-[min(84vw,760px)]">
           <img src={logo} alt="Greenforest Eatery" className="w-full drop-shadow-[0_4px_30px_rgba(0,0,0,0.45)]" />
         </motion.h1>
-        <motion.p variants={rise} className="mx-auto mt-10 max-w-lg text-lg leading-relaxed text-sand/75">
+        <motion.p variants={rise} className="mx-auto mt-6 md:mt-10 max-w-lg text-base md:text-lg leading-relaxed text-sand/75">
           Steaks, seafood and wood-fired pizza in an unhurried, elegant room. From a morning espresso to a late dinner.
         </motion.p>
-        <motion.div variants={rise} className="mt-12 flex flex-wrap items-center justify-center gap-5">
-          <a href="#menu" className="bg-gold px-9 py-4 text-xs uppercase tracking-[0.25em] text-forest-deep transition hover:bg-gold-soft">Explore the menu</a>
-          <a href="#visit" className="border border-gold/60 px-9 py-4 text-xs uppercase tracking-[0.25em] text-gold-soft transition hover:bg-gold/10">Visit us</a>
+        <motion.div variants={rise} className="mt-8 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3.5 sm:gap-5">
+          <a href="#menu" className="w-full sm:w-auto bg-gold px-8 py-3.5 md:px-9 md:py-4 text-xs uppercase tracking-[0.25em] text-forest-deep transition hover:bg-gold-soft text-center">Explore the menu</a>
+          <a href="#visit" className="w-full sm:w-auto border border-gold/60 px-8 py-3.5 md:px-9 md:py-4 text-xs uppercase tracking-[0.25em] text-gold-soft transition hover:bg-gold/10 text-center">Visit us</a>
         </motion.div>
       </motion.div>
 
-      <a href="#about" aria-label="Scroll down" className="absolute bottom-12 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 text-gold/70">
+      <a href="#about" aria-label="Scroll down" className="hidden md:flex absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-3 text-gold/70 transition-colors hover:text-gold">
         <span className="text-[0.6rem] uppercase tracking-[0.4em]">Scroll</span>
-        <motion.span animate={{ scaleY: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity }} className="h-10 w-px origin-top bg-gold" />
+        <motion.span animate={{ scaleY: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity }} className="h-8 lg:h-10 w-px origin-top bg-gold" />
       </a>
     </header>
   );
