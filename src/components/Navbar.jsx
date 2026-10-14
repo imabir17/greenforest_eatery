@@ -6,6 +6,7 @@ import logo from "../assets/logo.png";
 const links = [
   ["About", "#about"],
   ["Signatures", "#signature"],
+  ["Coffee Bar", "#coffeebar"],
   ["Gallery", "#gallery"],
   ["Menu", "#menu"],
   ["Visit", "#visit"],
