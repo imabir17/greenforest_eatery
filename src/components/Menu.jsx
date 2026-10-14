@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { SectionHead } from "./ui";
 import { menu, categories, tabImages, flags, formatPrice, img } from "../data";
 
@@ -11,6 +10,7 @@ const ICONS = {
 
 function Icon({ k, className = "h-4 w-4" }) {
   const i = ICONS[k];
+  if (!i) return null;
   return (
     <svg viewBox="0 0 24 24" className={className} role="img" aria-label={i.label}>
       <title>{i.label}</title>
@@ -19,143 +19,145 @@ function Icon({ k, className = "h-4 w-4" }) {
   );
 }
 
-function CategoryTabs({ cat, setCat }) {
-  const ref = useRef(null);
-  const drag = useRef({ down: false, x: 0, left: 0, moved: false });
-  const [edge, setEdge] = useState({ start: true, end: false });
-
-  const update = () => {
-    const el = ref.current;
-    if (!el) return;
-    setEdge({ start: el.scrollLeft < 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
-  };
-
-  useEffect(() => {
-    update();
-    window.addEventListener("resize", update);
-    return () => window.removeEventListener("resize", update);
-  }, []);
-
-  // Keep the active tab centred when it changes.
-  useEffect(() => {
-    const el = ref.current;
-    const btn = el?.querySelector('[aria-selected="true"]');
-    if (!btn) return;
-    el.scrollTo({ left: btn.offsetLeft - el.clientWidth / 2 + btn.offsetWidth / 2, behavior: "smooth" });
-  }, [cat]);
-
-  // Vertical mouse wheel scrolls the strip sideways while hovering it.
-  useEffect(() => {
-    const el = ref.current;
-    const onWheel = (e) => {
-      if (el.scrollWidth <= el.clientWidth || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-      const atStart = el.scrollLeft <= 0 && e.deltaY < 0;
-      const atEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 1 && e.deltaY > 0;
-      if (atStart || atEnd) return; // let the page scroll
-      e.preventDefault();
-      el.scrollLeft += e.deltaY;
-    };
-    el.addEventListener("wheel", onWheel, { passive: false });
-    return () => el.removeEventListener("wheel", onWheel);
-  }, []);
-
-  const by = (dir) => ref.current.scrollBy({ left: dir * ref.current.clientWidth * 0.7, behavior: "smooth" });
-
-  const onPointerDown = (e) => {
-    if (e.pointerType !== "mouse") return; // touch already scrolls natively
-    drag.current = { down: true, x: e.clientX, left: ref.current.scrollLeft, moved: false };
-  };
-  const onPointerMove = (e) => {
-    const d = drag.current;
-    if (!d.down) return;
-    const dx = e.clientX - d.x;
-    if (Math.abs(dx) > 4) d.moved = true;
-    ref.current.scrollLeft = d.left - dx;
-  };
-  const endDrag = () => { drag.current.down = false; };
-
-  const arrow = (dir, hidden) => (
-    <button
-      aria-label={dir < 0 ? "Scroll categories left" : "Scroll categories right"}
-      onClick={() => by(dir)}
-      tabIndex={hidden ? -1 : 0}
-      className={`absolute top-0 z-10 hidden h-full w-14 items-center transition-opacity md:flex ${
-        dir < 0 ? "left-0 justify-start bg-gradient-to-r" : "right-0 justify-end bg-gradient-to-l"
-      } from-forest-mid via-forest-mid/90 to-transparent ${hidden ? "pointer-events-none opacity-0" : "opacity-100"}`}
-    >
-      <svg viewBox="0 0 24 24" className="mx-1 h-8 w-8 rounded-full border border-gold/60 bg-forest-mid p-1.5 text-gold hover:bg-gold hover:text-forest-deep" fill="none" stroke="currentColor" strokeWidth="2">
-        <path d={dir < 0 ? "M15 5l-7 7 7 7" : "M9 5l7 7-7 7"} />
-      </svg>
-    </button>
-  );
-
-  return (
-    <div className="sticky top-[72px] z-30 -mx-6 mt-14 border-b border-gold/30 bg-forest-mid/90 backdrop-blur-lg">
-      <div className="relative">
-        {arrow(-1, edge.start)}
-        {arrow(1, edge.end)}
-        {/* Edge fades hint that more tabs exist (mobile) */}
-        <div className={`pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-forest-mid to-transparent transition-opacity md:hidden ${edge.start ? "opacity-0" : "opacity-100"}`} />
-        <div className={`pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-forest-mid to-transparent transition-opacity md:hidden ${edge.end ? "opacity-0" : "opacity-100"}`} />
-        <div
-          ref={ref}
-          role="tablist"
-          aria-label="Menu categories"
-          onScroll={update}
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={endDrag}
-          onPointerLeave={endDrag}
-          onClickCapture={(e) => { if (drag.current.moved) { e.stopPropagation(); e.preventDefault(); drag.current.moved = false; } }}
-          className="no-scrollbar flex cursor-grab touch-pan-x gap-1 overflow-x-auto px-6 active:cursor-grabbing md:px-14"
-        >
-          {categories.map((k) => {
-            const active = k === cat;
-            return (
-              <button
-                key={k}
-                role="tab"
-                aria-selected={active}
-                onClick={() => setCat(k)}
-                className={`relative flex-none select-none whitespace-nowrap px-5 py-4 text-xs uppercase tracking-[0.18em] transition-colors ${active ? "text-gold-soft" : "text-sand/50 hover:text-gold"}`}
-              >
-                {k}
-                {active && <motion.span layoutId="tab-underline" className="absolute inset-x-3 bottom-0 h-0.5 bg-gold" />}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    </div>
-  );
-}
+const toCatId = (name) => `cat-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
 export default function Menu() {
-  const [cat, setCat] = useState(categories[0]);
+  const [activeCat, setActiveCat] = useState(categories[0]);
   const [filter, setFilter] = useState(null); // null | 's' | 'c' | 'v'
+  const navRef = useRef(null);
 
-  const items = useMemo(
-    () => menu[cat].filter((i) => i[0][0] === "#" || !filter || (flags[i[0]] || "").includes(filter)),
-    [cat, filter]
-  );
-  const hasItems = items.some((i) => i[0][0] !== "#");
+  // Scrollspy: update active category pill based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 200;
+      for (let i = categories.length - 1; i >= 0; i--) {
+        const el = document.getElementById(toCatId(categories[i]));
+        if (el && el.offsetTop <= scrollPos) {
+          setActiveCat(categories[i]);
+          break;
+        }
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Smooth scroll active pill into view within the horizontal category bar
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+    const activeBtn = nav.querySelector(`[data-cat="${activeCat}"]`);
+    if (activeBtn) {
+      nav.scrollTo({
+        left: activeBtn.offsetLeft - nav.clientWidth / 2 + activeBtn.offsetWidth / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [activeCat]);
+
+  const scrollToCategory = (catName) => {
+    setActiveCat(catName);
+    const target = document.getElementById(toCatId(catName));
+    if (target) {
+      const navOffset = 135;
+      const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navOffset,
+        behavior: "smooth",
+      });
+    }
+  };
+
+  // Filter items per category
+  const filteredCategories = useMemo(() => {
+    return categories.map((catName) => {
+      const allItems = menu[catName] || [];
+      const visibleItems = allItems.filter(
+        (i) => i[0].startsWith("#") || !filter || (flags[i[0]] || "").includes(filter)
+      );
+      // Clean up orphaned subheadings if no actual items follow them
+      const cleanedItems = [];
+      let currentSubheading = null;
+      visibleItems.forEach((item) => {
+        if (item[0].startsWith("#")) {
+          currentSubheading = item;
+        } else {
+          if (currentSubheading) {
+            cleanedItems.push(currentSubheading);
+            currentSubheading = null;
+          }
+          cleanedItems.push(item);
+        }
+      });
+      const hasRealDishes = cleanedItems.some((i) => !i[0].startsWith("#"));
+      return {
+        name: catName,
+        id: toCatId(catName),
+        items: cleanedItems,
+        images: tabImages[catName] || [],
+        hasItems: hasRealDishes,
+      };
+    });
+  }, [filter]);
 
   return (
-    <section id="menu" className="bg-forest-mid py-28 md:py-36">
-      <div className="mx-auto max-w-5xl px-6">
-        <SectionHead eyebrow="Taste" title="The menu" lede="Choose a category below." />
+    <section id="menu" className="relative bg-forest-mid py-28 md:py-36 text-sand">
+      <div className="mx-auto max-w-6xl px-6">
+        <SectionHead
+          eyebrow="A la Carte"
+          title="The Full Menu"
+          lede="Crafted from premium ingredients, grilled to order, and served with pride."
+          light
+        />
 
-        <CategoryTabs cat={cat} setCat={setCat} />
+        {/* Sticky Quick-Jump Category Navigation Bar */}
+        <div className="sticky top-[72px] z-30 -mx-6 mt-14 border-y border-gold/30 bg-forest-deep/95 backdrop-blur-xl py-2 shadow-xl shadow-black/40">
+          <div className="relative">
+            <div
+              ref={navRef}
+              className="no-scrollbar flex items-center gap-2 overflow-x-auto px-6 py-1 scroll-smooth"
+            >
+              {categories.map((k) => {
+                const isActive = k === activeCat;
+                return (
+                  <button
+                    key={k}
+                    data-cat={k}
+                    onClick={() => scrollToCategory(k)}
+                    className={`flex-none rounded-full px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
+                      isActive
+                        ? "bg-gold text-forest-deep font-medium shadow-md shadow-gold/20 scale-105"
+                        : "border border-gold/20 text-sand/70 hover:border-gold hover:text-gold"
+                    }`}
+                  >
+                    {k}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
 
-
+        {/* Dietary Legend & Filter Buttons */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <button
+            onClick={() => setFilter(null)}
+            className={`rounded-full border px-4 py-1.5 text-xs uppercase tracking-[0.15em] transition ${
+              filter === null
+                ? "border-gold bg-gold text-forest-deep font-medium"
+                : "border-gold/30 text-sand/60 hover:border-gold"
+            }`}
+          >
+            All Items
+          </button>
           {Object.keys(ICONS).map((k) => (
             <button
               key={k}
               onClick={() => setFilter(filter === k ? null : k)}
-              aria-pressed={filter === k}
-              className={`flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm transition ${
-                filter === k ? "border-gold bg-gold text-forest-deep" : "border-gold/30 text-sand/60 hover:border-gold"
+              className={`flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs uppercase tracking-[0.15em] transition ${
+                filter === k
+                  ? "border-gold bg-gold text-forest-deep font-medium"
+                  : "border-gold/30 text-sand/60 hover:border-gold"
               }`}
             >
               <Icon k={k} className="h-3.5 w-3.5" />
@@ -164,46 +166,111 @@ export default function Menu() {
           ))}
         </div>
 
-        <div role="tabpanel" aria-live="polite" className="mt-12 min-h-[480px]">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={cat + filter}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35 }}
-            >
-              <div className="mb-12 flex justify-center gap-5">
-                {(tabImages[cat] || []).map((s) => (
-                  <img key={s} src={img(s)} alt={cat} loading="lazy" className="h-36 w-36 rounded-t-full rounded-b-md border border-gold/50 object-cover shadow-xl shadow-black/40 md:h-52 md:w-52" />
-                ))}
-              </div>
+        {/* Continuous Menu Sections */}
+        <div className="mt-16 space-y-24">
+          {filteredCategories.map((category) => {
+            if (!category.hasItems && filter) return null;
 
-              {!hasItems && <p className="py-10 text-center font-serif text-2xl italic text-sand/50">Nothing here matches that filter.</p>}
+            return (
+              <div
+                key={category.name}
+                id={category.id}
+                className="scroll-mt-36 border-t border-gold/20 pt-14 first:border-none first:pt-0"
+              >
+                {/* Category Header */}
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-gold/30">
+                  <div>
+                    <span className="text-[0.7rem] uppercase tracking-[0.35em] text-gold">Category</span>
+                    <h3 className="mt-1 font-serif text-4xl md:text-5xl text-cream tracking-wide">
+                      {category.name}
+                    </h3>
+                  </div>
 
-              <div className="mx-auto max-w-3xl">
-                {items.map((i) =>
-                  i[0][0] === "#" ? (
-                    hasItems && <h3 key={i[0]} className="mb-2 mt-12 text-center font-serif text-3xl text-gold">{i[0].slice(1)}</h3>
-                  ) : (
-                    <div key={i[0]} className="group grid grid-cols-[1fr_auto] gap-x-6 border-b border-dotted border-gold/50 py-5 transition-colors hover:bg-white/5 md:px-4">
-                      <h3 className="flex items-center gap-2 font-serif text-2xl italic text-cream">
-                        {i[0]}
-                        <span className="flex gap-1">{(flags[i[0]] || "").split("").map((c) => <Icon key={c} k={c} />)}</span>
-                      </h3>
-                      <span className="whitespace-nowrap font-serif text-xl font-semibold text-gold">{formatPrice(i[2])}</span>
-                      {i[1] && <p className="col-start-1 mt-1 text-[0.95rem] leading-relaxed text-sand/60">{i[1]}</p>}
+                  {/* Thumbnail Previews for this Category */}
+                  {category.images.length > 0 && (
+                    <div className="flex items-center gap-3">
+                      {category.images.map((imgKey) => (
+                        <div
+                          key={imgKey}
+                          className="group relative h-16 w-16 md:h-20 md:w-20 overflow-hidden rounded-full border border-gold/40 shadow-lg shadow-black/40"
+                        >
+                          <img
+                            src={img(imgKey)}
+                            alt={category.name}
+                            loading="lazy"
+                            className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                      ))}
                     </div>
-                  )
-                )}
+                  )}
+                </div>
+
+                {/* Items Grid for this Category */}
+                <div className="mt-6 grid gap-x-12 gap-y-2 md:grid-cols-2">
+                  {category.items.map((item, idx) => {
+                    const isSubheading = item[0].startsWith("#");
+
+                    if (isSubheading) {
+                      return (
+                        <div key={idx} className="col-span-full pt-8 pb-2">
+                          <div className="flex items-center gap-3">
+                            <span className="h-px w-8 bg-gold/40" />
+                            <h4 className="font-serif text-2xl text-gold-soft italic">
+                              {item[0].slice(1)}
+                            </h4>
+                            <span className="h-px flex-1 bg-gold/20" />
+                          </div>
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <div
+                        key={item[0]}
+                        className="group flex flex-col justify-between border-b border-dotted border-gold/25 py-4 transition-colors hover:bg-white/5 md:px-3 rounded"
+                      >
+                        <div className="flex items-baseline justify-between gap-4">
+                          <h4 className="flex items-center gap-2 font-serif text-xl md:text-2xl italic text-cream group-hover:text-gold-soft transition-colors">
+                            {item[0]}
+                            <span className="inline-flex gap-1">
+                              {(flags[item[0]] || "")
+                                .split("")
+                                .map((c) => <Icon key={c} k={c} />)}
+                            </span>
+                          </h4>
+                          <span className="whitespace-nowrap font-serif text-lg md:text-xl font-semibold text-gold">
+                            {formatPrice(item[2])}
+                          </span>
+                        </div>
+                        {item[1] && (
+                          <p className="mt-1.5 text-sm md:text-base leading-relaxed text-sand/65">
+                            {item[1]}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            );
+          })}
         </div>
 
-        <p className="mt-10 text-center text-xs uppercase tracking-[0.2em] text-sand/50">
-          All prices are in Bangladeshi Taka (Tk) and exclusive of VAT.
-        </p>
+        {/* Footer Notice */}
+        <div className="mt-20 border-t border-gold/30 pt-8 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-sand/50">
+            All prices are in Bangladeshi Taka (Tk) and exclusive of VAT.
+          </p>
+          <div className="mt-6">
+            <a
+              href="#visit"
+              className="inline-block border border-gold/60 px-8 py-3 text-xs uppercase tracking-[0.2em] text-gold-soft transition hover:bg-gold hover:text-forest-deep"
+            >
+              Reserve a Table
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
