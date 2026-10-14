@@ -1,0 +1,730 @@
+{
+ "menu": {
+  "Appetizers": [
+   [
+    "Italian Chorizo with Bean Stew",
+    "Spiced chorizo slow-cooked with creamy white beans, toasted artisan bread",
+    "500"
+   ],
+   [
+    "Fried Calamari",
+    "Golden, crisp calamari rings with classic tartar sauce",
+    "550"
+   ],
+   [
+    "Grilled Chicken Wings (4 pcs)",
+    "Flame-grilled, aromatic spices, roasted potato wedges and house coleslaw",
+    "550"
+   ],
+   [
+    "Gambas Pil Pil (4 pcs)",
+    "Prawns simmered in chili-garlic oil, toasted artisan bread",
+    "600"
+   ],
+   [
+    "Kofta with Pita Bread",
+    "Chargrilled minced meat kofta with herbs and spices, warm pita",
+    "600"
+   ],
+   [
+    "Poutine with Chicken",
+    "Golden fries, tender chicken, rich gravy and melted cheese",
+    "400"
+   ],
+   [
+    "Poutine with Beef",
+    "Golden fries, tender beef, rich gravy and melted cheese",
+    "500"
+   ],
+   [
+    "Patatas Bravas",
+    "Crisp golden potatoes with a vibrant, gently spiced tomato sauce",
+    "350"
+   ]
+  ],
+  "Soups": [
+   [
+    "Cream of Mushroom Soup",
+    "Wild forest mushrooms, a touch of cream and aromatic herbs",
+    "350"
+   ],
+   [
+    "Cream of Chicken Soup",
+    "Tender pulled chicken in a silken cream broth",
+    "350"
+   ],
+   [
+    "Thai Soup (Prawn & Chicken)",
+    "Tom Yum style: tangy, spicy, with lemongrass and kaffir lime",
+    "250"
+   ],
+   [
+    "Seafood Clear Soup",
+    "Refined clear consommé with fresh seasonal seafood",
+    "400"
+   ],
+   [
+    "Chicken Corn Soup",
+    "Sweet corn and shredded chicken in a slow-cooked golden broth",
+    "250"
+   ]
+  ],
+  "Burgers & Sandwiches": [
+   [
+    "Beef Smashed Burger",
+    "Seared, smashed beef patty, caramelized onions, signature sauce, brioche bun",
+    "450"
+   ],
+   [
+    "Grilled Chicken Burger",
+    "Charred chicken breast, seasonal greens, pickled garnish, herb aioli",
+    "400"
+   ],
+   [
+    "Nashville Hot Chicken Burger",
+    "Crispy fried chicken, Nashville hot glaze, coleslaw, pickles",
+    "500"
+   ],
+   [
+    "Vegetarian Burger",
+    "House-crafted vegetable patty, crisp greens, tomatoes",
+    "350"
+   ],
+   [
+    "Cheese Melt Beef Burger",
+    "Juicy beef patty, molten cheese, caramelized onions, butter-toasted bun",
+    "550"
+   ],
+   [
+    "Spicy Prawn Burger",
+    "Spiced prawn patty, seared golden, zesty seafood aioli",
+    "550"
+   ],
+   [
+    "Philly Steak Sandwich",
+    "Thinly shaved prime beef, melted cheese, caramelized onion",
+    "500"
+   ],
+   [
+    "Chicken Sandwich",
+    "Herb-grilled chicken, crisp lettuce, house aioli",
+    "300"
+   ],
+   [
+    "Club Sandwich",
+    "Triple-decker with grilled chicken, egg and fresh vegetables",
+    "350"
+   ]
+  ],
+  "Chicken": [
+   [
+    "Chicken Schnitzel",
+    "Golden panko-crusted cutlet, crisp outside and succulent within",
+    "650"
+   ],
+   [
+    "Grilled Chicken (1/4)",
+    "Herb-marinated, flame-grilled, herbed rice, sautéed vegetables, creamy dip",
+    "550"
+   ],
+   [
+    "Chicken Roulade",
+    "Stuffed chicken supreme, spicy pilaf, sautéed vegetables, house special sauce",
+    "1050"
+   ],
+   [
+    "Chicken Steak",
+    "Char-grilled breast in wild mushroom cream sauce, mac & cheese",
+    "850"
+   ],
+   [
+    "Nashville Hot Chicken",
+    "Marinated overnight and golden-fried, soft white toast, coleslaw, fries",
+    "750"
+   ],
+   [
+    "Parmesan Chicken",
+    "Crispy parmesan-crusted chicken, rich tomato sauce, mozzarella",
+    "1100"
+   ]
+  ],
+  "Steaks": [
+   [
+    "Rib Eye Steak",
+    "Well-marbled prime rib eye grilled to your preference, mashed potatoes, mac & cheese, peppercorn or wild mushroom sauce",
+    "2200"
+   ],
+   [
+    "T-Bone Steak",
+    "Tenderloin and strip steak, fried or mashed potatoes, mac & cheese, sauce",
+    "2400"
+   ],
+   [
+    "Short Rib",
+    "Slow-cooked, fall-off-the-bone tender, potatoes, mac & cheese, sauce",
+    "1650"
+   ],
+   [
+    "Mutton Shank",
+    "Braised until succulent, spicy aromatic rice, sautéed vegetables",
+    "1250"
+   ],
+   [
+    "Lamb Chops (3 pcs)",
+    "Herb-crusted, grilled with aromatic spices, potatoes, mac & cheese, sauce",
+    "2400"
+   ],
+   [
+    "Surf & Turf",
+    "Premium steak and fresh seafood, potatoes, mac & cheese, sauce",
+    "2850"
+   ]
+  ],
+  "Fish": [
+   [
+    "Grilled Salmon",
+    "Char-grilled Atlantic salmon, pearl couscous or butter rice",
+    "2500"
+   ],
+   [
+    "King Fish",
+    "Seared king fish steak with herbs",
+    "1750"
+   ],
+   [
+    "Fish & Chips",
+    "Crispy-battered white fish, hand-cut fries, house-made accompaniments",
+    "950"
+   ],
+   [
+    "Cajun Sea Bass",
+    "Pan-seared in bold Cajun spices, smoky peppery crust",
+    "1500"
+   ],
+   [
+    "Steamed Koral (Lemon & Ginger)",
+    "Delicately steamed fillet with lemon and ginger",
+    "1750"
+   ],
+   [
+    "Grilled Koral (Spicy Sauce)",
+    "Flame-grilled whole Koral with a fiery house spicy glaze",
+    "1750"
+   ],
+   [
+    "Grilled / Fried Silver Pomfret",
+    "Whole pomfret, grilled or crisp-fried to your preference",
+    "1200"
+   ],
+   [
+    "Classic Butter Grilled Lobster",
+    "Garlic butter, lemon wedges, fried rice or mash, lobster bisque",
+    "3000"
+   ]
+  ],
+  "House Specials": [
+   [
+    "Arabian 1/4 Grilled Chicken",
+    "Middle Eastern-spiced, Arabian rice, chili sauce, fresh salad",
+    "650"
+   ],
+   [
+    "Arabian 1/4 Spicy Chicken",
+    "Bold kick of spice, spicy rice, chili sauce, salad",
+    "650"
+   ],
+   [
+    "Mother's Recipe Steak",
+    "Homemade-style ground beef steak, peppercorn gravy, fries, mac & cheese",
+    "1000"
+   ],
+   [
+    "Afghani Mutton Curry",
+    "Creamy slow-cooked curry, Afghan pulao or warm pita",
+    "850"
+   ],
+   [
+    "Chicken Karahi",
+    "Simmered with tomatoes, fresh herbs and aromatic spices",
+    "Half 850 · Full 1,550"
+   ],
+   [
+    "Beef Karahi",
+    "Robust and spicy, slow-cooked karahi style",
+    "Half 1,000 · Full 2,000"
+   ],
+   [
+    "Grilled 1/4 Chicken with House Special Sauce",
+    "Creamy spicy signature sauce, spicy rice, salad",
+    "750"
+   ],
+   [
+    "Eggplant Mozzarella with Vegetarian Polau",
+    "Baked eggplant, tomato sauce, melted mozzarella, polau rice",
+    "750"
+   ]
+  ],
+  "Lunch Meals": [
+   [
+    "Fried Rice with Chili Chicken & Vegetables",
+    "Wok-tossed rice, fiery chili chicken, sautéed vegetables, chili relish",
+    "400"
+   ],
+   [
+    "Nasi Goreng with Curry Chicken",
+    "Indonesian-style Nasi Goreng with curry-infused chicken",
+    "450"
+   ],
+   [
+    "Fried Rice with Chili Beef",
+    "Egg fried rice, beef in a smoky chili glaze, fresh vegetables",
+    "450"
+   ],
+   [
+    "Fried Rice with Prawn Curry / Grilled Prawn",
+    "Jasmine fried rice with coastal-style prawn curry or char-grilled jumbo prawns",
+    "650"
+   ],
+   [
+    "Fried Rice with Sweet & Sour Fish",
+    "Crispy fish in sweet and sour reduction, stir-fried vegetables",
+    "550"
+   ],
+   [
+    "#Bread & Rice (add-on)",
+    "",
+    ""
+   ],
+   [
+    "Pita Bread",
+    "",
+    "150"
+   ],
+   [
+    "Afghani Pulao",
+    "",
+    "220"
+   ],
+   [
+    "Spicy Portuguese Rice",
+    "",
+    "220"
+   ]
+  ],
+  "Noodles & Pasta": [
+   [
+    "Fried Noodles",
+    "Wok-tossed egg noodles, aromatic spices, fiery chicken strips",
+    "450"
+   ],
+   [
+    "Soupy Noodles",
+    "Silky noodles in slow-simmered broth, diced chicken",
+    "550"
+   ],
+   [
+    "Sizzling Noodles",
+    "Sizzling platter with beef, chicken and prawns in a smoky glaze",
+    "850"
+   ],
+   [
+    "Oven Baked Beef Pasta",
+    "Al dente pasta, minced beef ragu, golden cheese crust",
+    "650"
+   ],
+   [
+    "Oven Baked Chicken Pasta",
+    "Creamy oven-finished pasta, roasted chicken, melted cheese",
+    "550"
+   ],
+   [
+    "Creamy Chicken Pasta",
+    "Penne in velvety cream sauce, juicy chicken, hint of herbs",
+    "650"
+   ],
+   [
+    "Aglio Olio Spaghetti",
+    "Garlic-infused olive oil, chili and subtle herbs",
+    "550"
+   ],
+   [
+    "Spicy Prawn Spaghetti",
+    "Plump prawns in a bold arrabbiata-style sauce",
+    "750"
+   ],
+   [
+    "Meatball Pasta",
+    "Handcrafted meatballs, slow-simmered tomato sauce",
+    "750"
+   ],
+   [
+    "Lasagna",
+    "Layers of pasta, rich meat sauce and creamy béchamel baked with cheese",
+    "900"
+   ]
+  ],
+  "Pizzas": [
+   [
+    "Margherita",
+    "San Marzano tomato sauce and mozzarella on a hand-stretched wood-fired crust",
+    "S 550 · M 650 · L 750"
+   ],
+   [
+    "Chicken Supreme",
+    "Grilled chicken, mushrooms, sweet onions, vine-ripened tomatoes",
+    "S 650 · M 750 · L 850"
+   ],
+   [
+    "Tandoori Chicken",
+    "Tandoor-spiced chicken tikka, mushrooms, bell peppers, tomatoes",
+    "S 700 · M 800 · L 900"
+   ],
+   [
+    "Hawaiian Chicken",
+    "Roasted chicken and caramelized pineapple, creamy mozzarella",
+    "S 700 · M 800 · L 900"
+   ],
+   [
+    "Vegetarian Deluxe",
+    "Tomato, roasted aubergine, onion, capsicum on an olive-oil base",
+    "S 600 · M 700 · L 800"
+   ],
+   [
+    "Spicy Beef",
+    "Fiery seasoned beef, green chilies, mushrooms, onions",
+    "S 750 · M 900 · L 1,050"
+   ],
+   [
+    "Beef Pepperoni",
+    "Beef pepperoni over rich tomato sauce and double cheese",
+    "S 650 · M 750 · L 850"
+   ],
+   [
+    "Meat Feast",
+    "Spicy beef, grilled chicken, beef pepperoni, capsicum, loaded cheese",
+    "S 750 · M 950 · L 1,100"
+   ]
+  ],
+  "Hot Beverages": [
+   [
+    "Espresso (Single / Double)",
+    "",
+    "180 / 220"
+   ],
+   [
+    "Americano (Small / Large)",
+    "",
+    "190 / 220"
+   ],
+   [
+    "Cappuccino",
+    "",
+    "300"
+   ],
+   [
+    "Latte",
+    "",
+    "320"
+   ],
+   [
+    "Caramel Macchiato",
+    "",
+    "370"
+   ],
+   [
+    "Affogato",
+    "",
+    "320"
+   ],
+   [
+    "Hot Chocolate",
+    "",
+    "350"
+   ],
+   [
+    "#Dark Roast Special",
+    "",
+    ""
+   ],
+   [
+    "Espresso (Single / Double)",
+    "",
+    "200 / 250"
+   ],
+   [
+    "Americano (Regular / Large)",
+    "",
+    "220 / 260"
+   ],
+   [
+    "Cappuccino",
+    "",
+    "350"
+   ],
+   [
+    "Latte",
+    "",
+    "360"
+   ],
+   [
+    "Caramel / Vanilla / Hazelnut / Tiramisu Macchiato",
+    "",
+    "400"
+   ]
+  ],
+  "Cold Beverages": [
+   [
+    "Piña Colada",
+    "",
+    "300"
+   ],
+   [
+    "Iced Tea",
+    "",
+    "300"
+   ],
+   [
+    "Lemon Burst",
+    "",
+    "330"
+   ],
+   [
+    "Fresh Lemonade",
+    "",
+    "250"
+   ],
+   [
+    "Fresh Pineapplelade",
+    "",
+    "300"
+   ],
+   [
+    "Fizzy Fruit (Grapefruit / Green apple / Strawberry)",
+    "",
+    "300"
+   ],
+   [
+    "Seasonal Fruit",
+    "",
+    "250"
+   ],
+   [
+    "Lychee & Hibiscus",
+    "",
+    "350"
+   ],
+   [
+    "Mango & Passion Fruit",
+    "",
+    "300"
+   ],
+   [
+    "Strawberry Lemonade",
+    "",
+    "300"
+   ],
+   [
+    "Iced Coffee",
+    "",
+    "300"
+   ],
+   [
+    "#Milkshakes",
+    "",
+    ""
+   ],
+   [
+    "Vanilla",
+    "",
+    "400"
+   ],
+   [
+    "Chocolate",
+    "",
+    "400"
+   ],
+   [
+    "Strawberry",
+    "",
+    "400"
+   ],
+   [
+    "#Specialty Drinks",
+    "",
+    ""
+   ],
+   [
+    "Tiramisu Mocha",
+    "",
+    "375"
+   ],
+   [
+    "Green Matcha with Strawberry",
+    "",
+    "400"
+   ],
+   [
+    "#Add-ons",
+    "",
+    ""
+   ],
+   [
+    "Honey",
+    "",
+    "60"
+   ],
+   [
+    "Flavour (Hazelnut, Chocolate, Caramel, Vanilla, Strawberry)",
+    "",
+    "60"
+   ]
+  ]
+ },
+ "tabImages": {
+  "Appetizers": [
+   "chorizo",
+   "gambas"
+  ],
+  "Soups": [
+   "mushroom",
+   "thai"
+  ],
+  "Burgers & Sandwiches": [
+   "prawnburger",
+   "smashburger"
+  ],
+  "Chicken": [
+   "parm",
+   "roulade"
+  ],
+  "Steaks": [
+   "shortrib",
+   "ribeye"
+  ],
+  "Fish": [
+   "fishchips",
+   "lobster"
+  ],
+  "House Specials": [
+   "arabian",
+   "arabianchicken"
+  ],
+  "Lunch Meals": [
+   "nasi",
+   "friedprawn"
+  ],
+  "Noodles & Pasta": [
+   "lasagna",
+   "sizzling"
+  ],
+  "Pizzas": [
+   "margherita",
+   "supreme"
+  ],
+  "Hot Beverages": [
+   "espresso",
+   "latte"
+  ],
+  "Cold Beverages": [
+   "lemonade",
+   "icedcoffee"
+  ]
+ },
+ "flags": {
+  "Rib Eye Steak": "s",
+  "Short Rib": "s",
+  "Mutton Shank": "s",
+  "Sizzling Noodles": "s",
+  "Oven Baked Chicken Pasta": "s",
+  "Meatball Pasta": "s",
+  "Lasagna": "s",
+  "Fish & Chips": "s",
+  "Classic Butter Grilled Lobster": "s",
+  "Chicken Roulade": "s",
+  "Parmesan Chicken": "s",
+  "Fried Rice with Chili Chicken & Vegetables": "s",
+  "Fried Rice with Prawn Curry / Grilled Prawn": "s",
+  "Thai Soup (Prawn & Chicken)": "s",
+  "Beef Smashed Burger": "s",
+  "Spicy Prawn Burger": "s",
+  "Fried Calamari": "s",
+  "Gambas Pil Pil (4 pcs)": "s",
+  "Chicken Supreme": "s",
+  "Beef Pepperoni": "s",
+  "Afghani Mutton Curry": "s",
+  "Grilled 1/4 Chicken with House Special Sauce": "s",
+  "Spicy Prawn Spaghetti": "c",
+  "Grilled Koral (Spicy Sauce)": "c",
+  "Nashville Hot Chicken": "c",
+  "Fried Rice with Chili Beef": "c",
+  "Nashville Hot Chicken Burger": "c",
+  "Spicy Beef": "c",
+  "Arabian 1/4 Spicy Chicken": "c",
+  "Cream of Mushroom Soup": "v",
+  "Vegetarian Burger": "v",
+  "Patatas Bravas": "v",
+  "Margherita": "v",
+  "Vegetarian Deluxe": "v",
+  "Eggplant Mozzarella with Vegetarian Polau": "v"
+ },
+ "gallery": [
+  [
+   "ribeye",
+   "Rib eye steak"
+  ],
+  [
+   "lobster",
+   "Butter grilled lobster"
+  ],
+  [
+   "roulade",
+   "Chicken roulade"
+  ],
+  [
+   "smashburger",
+   "Beef smashed burger"
+  ],
+  [
+   "supreme",
+   "Chicken supreme pizza"
+  ],
+  [
+   "gambas",
+   "Gambas pil pil"
+  ],
+  [
+   "thai",
+   "Thai soup"
+  ],
+  [
+   "latte",
+   "Fresh latte"
+  ]
+ ],
+ "imgExt": {
+  "shortrib": "jpg",
+  "ribeye": "jpg",
+  "lasagna": "jpg",
+  "sizzling": "jpg",
+  "fishchips": "jpg",
+  "lobster": "jpg",
+  "parm": "jpg",
+  "roulade": "jpg",
+  "nasi": "jpg",
+  "friedprawn": "jpg",
+  "mushroom": "jpg",
+  "thai": "jpg",
+  "prawnburger": "jpg",
+  "smashburger": "jpg",
+  "chorizo": "jpg",
+  "gambas": "jpg",
+  "espresso": "jpg",
+  "latte": "jpg",
+  "lemonade": "jpg",
+  "icedcoffee": "jpg",
+  "margherita": "jpg",
+  "supreme": "jpg",
+  "arabian": "jpg",
+  "arabianchicken": "jpg"
+ }
+}
