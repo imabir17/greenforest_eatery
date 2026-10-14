@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { SectionHead } from "./ui";
 import { menu, categories, tabImages, flags, formatPrice, img } from "../data";
 
@@ -22,51 +22,7 @@ function Icon({ k, className = "h-4 w-4" }) {
 const toCatId = (name) => `cat-${name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 
 export default function Menu() {
-  const [activeCat, setActiveCat] = useState(categories[0]);
   const [filter, setFilter] = useState(null); // null | 's' | 'c' | 'v'
-  const navRef = useRef(null);
-
-  // Scrollspy: update active category pill based on scroll position
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPos = window.scrollY + 200;
-      for (let i = categories.length - 1; i >= 0; i--) {
-        const el = document.getElementById(toCatId(categories[i]));
-        if (el && el.offsetTop <= scrollPos) {
-          setActiveCat(categories[i]);
-          break;
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Smooth scroll active pill into view within the horizontal category bar
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
-    const activeBtn = nav.querySelector(`[data-cat="${activeCat}"]`);
-    if (activeBtn) {
-      nav.scrollTo({
-        left: activeBtn.offsetLeft - nav.clientWidth / 2 + activeBtn.offsetWidth / 2,
-        behavior: "smooth",
-      });
-    }
-  }, [activeCat]);
-
-  const scrollToCategory = (catName) => {
-    setActiveCat(catName);
-    const target = document.getElementById(toCatId(catName));
-    if (target) {
-      const navOffset = 135;
-      const elementPosition = target.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: elementPosition - navOffset,
-        behavior: "smooth",
-      });
-    }
-  };
 
   // Filter items per category
   const filteredCategories = useMemo(() => {
@@ -109,34 +65,6 @@ export default function Menu() {
           lede="Crafted from premium ingredients, grilled to order, and served with pride."
           light
         />
-
-        {/* Sticky Quick-Jump Category Navigation Bar */}
-        <div className="sticky top-[72px] z-30 -mx-6 mt-14 border-y border-gold/30 bg-forest-deep/95 backdrop-blur-xl py-2 shadow-xl shadow-black/40">
-          <div className="relative">
-            <div
-              ref={navRef}
-              className="no-scrollbar flex items-center gap-2 overflow-x-auto px-6 py-1 scroll-smooth"
-            >
-              {categories.map((k) => {
-                const isActive = k === activeCat;
-                return (
-                  <button
-                    key={k}
-                    data-cat={k}
-                    onClick={() => scrollToCategory(k)}
-                    className={`flex-none rounded-full px-4 py-2 text-xs uppercase tracking-[0.16em] transition-all duration-300 ${
-                      isActive
-                        ? "bg-gold text-forest-deep font-medium shadow-md shadow-gold/20 scale-105"
-                        : "border border-gold/20 text-sand/70 hover:border-gold hover:text-gold"
-                    }`}
-                  >
-                    {k}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </div>
 
         {/* Dietary Legend & Filter Buttons */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
